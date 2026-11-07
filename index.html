@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hope Foundation - NGO Website</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER / NAVBAR ===== -->
+  <header>
+    <div class="nav-container">
+      <h1 class="logo">🌱 Hope Foundation</h1>
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+      <nav id="menu">
+        <a href="#" onclick="showPage('home')">Home</a>
+        <a href="#" onclick="showPage('about')">About</a>
+        <a href="#" onclick="showPage('causes')">Causes</a>
+        <a href="#" onclick="showPage('volunteer')">Volunteer</a>
+        <a href="#" onclick="showPage('gallery')">Gallery</a>
+        <a href="#" onclick="showPage('contact')">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HOME PAGE ===== -->
+  <section id="home" class="page active">
+    <div class="hero">
+      <h2>Small Acts, Big Change</h2>
+      <p>Join us in building a better world through education, health, and care.</p>
+      <button class="btn" onclick="showPage('volunteer')">Become a Volunteer</button>
+    </div>
+
+    <!-- Animated Counters -->
+    <h2 class="section-title">Our Impact</h2>
+    <div class="stats">
+      <div class="stat-box">
+        <span class="counter" data-target="12500">0</span>
+        <p>People Helped</p>
+      </div>
+      <div class="stat-box">
+        <span class="counter" data-target="580000">0</span>
+        <p>Funds Raised (₹)</p>
+      </div>
+      <div class="stat-box">
+        <span class="counter" data-target="320">0</span>
+        <p>Volunteers</p>
+      </div>
+    </div>
+
+    <!-- Donation Progress Bar -->
+    <h2 class="section-title">Clean Water Project</h2>
+    <div class="donation-box">
+      <p>Goal: ₹8,00,000 | Raised: ₹5,44,000</p>
+      <div class="progress-bg">
+        <div class="progress-fill"></div>
+      </div>
+      <p>68% funded</p>
+      <div class="donate-buttons">
+        <button onclick="donate(500)">₹500</button>
+        <button onclick="donate(1000)">₹1000</button>
+        <button onclick="donate(2500)">₹2500</button>
+      </div>
+      <p id="donateMsg"></p>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT PAGE ===== -->
+  <section id="about" class="page">
+    <h2 class="section-title">About Us</h2>
+    <p class="text">Founded in 2010, Hope Foundation works for underprivileged communities through education, healthcare, and sustainable programs.</p>
+
+    <h2 class="section-title">FAQ</h2>
+    <div class="faq">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How can I volunteer? <span>▼</span></div>
+        <div class="faq-a">Fill the volunteer form and we will contact you within 3 days.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Are donations tax-deductible? <span>▼</span></div>
+        <div class="faq-a">Yes, all donations get 80G tax exemption receipts.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Where does the money go? <span>▼</span></div>
+        <div class="faq-a">85% goes to programs, 10% operations, 5% fundraising.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CAUSES PAGE ===== -->
+  <section id="causes" class="page">
+    <h2 class="section-title">Our Causes</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>📚 Education</h3>
+        <p>Scholarships and after-school classes for 2000+ children.</p>
+      </div>
+      <div class="card">
+        <h3>💧 Clean Water</h3>
+        <p>Building wells and purification systems in rural villages.</p>
+      </div>
+      <div class="card">
+        <h3>🏥 Healthcare</h3>
+        <p>Mobile clinics and immunization drives in 15 villages.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VOLUNTEER PAGE ===== -->
+  <section id="volunteer" class="page">
+    <h2 class="section-title">Become a Volunteer</h2>
+    <form id="volunteerForm" onsubmit="return validateVolunteer(event)">
+      <label>Name *</label>
+      <input type="text" id="volName" placeholder="Your name">
+      <small id="volNameErr"></small>
+
+      <label>Email *</label>
+      <input type="email" id="volEmail" placeholder="you@example.com">
+      <small id="volEmailErr"></small>
+
+      <label>Phone (10 digits) *</label>
+      <input type="text" id="volPhone" placeholder="9876543210">
+      <small id="volPhoneErr"></small>
+
+      <button type="submit" class="btn">Submit</button>
+      <p id="volSuccess"></p>
+    </form>
+  </section>
+
+  <!-- ===== GALLERY PAGE ===== -->
+  <section id="gallery" class="page">
+    <h2 class="section-title">Gallery (Click to view)</h2>
+    <div class="gallery">
+      <div class="gallery-item" onclick="openLightbox('🏫','Classroom Project')">🏫</div>
+      <div class="gallery-item" onclick="openLightbox('💧','Clean Water Drive')">💧</div>
+      <div class="gallery-item" onclick="openLightbox('🍛','Nutrition Program')">🍛</div>
+      <div class="gallery-item" onclick="openLightbox('🌱','Tree Plantation')">🌱</div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT PAGE ===== -->
+  <section id="contact" class="page">
+    <h2 class="section-title">Contact Us</h2>
+    <form id="contactForm" onsubmit="return validateContact(event)">
+      <label>Name *</label>
+      <input type="text" id="cName" placeholder="Your name">
+      <small id="cNameErr"></small>
+
+      <label>Email *</label>
+      <input type="email" id="cEmail" placeholder="you@example.com">
+      <small id="cEmailErr"></small>
+
+      <label>Message *</label>
+      <textarea id="cMsg" rows="3" placeholder="Your message"></textarea>
+      <small id="cMsgErr"></small>
+
+      <button type="submit" class="btn">Send</button>
+      <p id="cSuccess"></p>
+    </form>
+  </section>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-box" onclick="event.stopPropagation()">
+      <span onclick="closeLightbox()" class="close">×</span>
+      <div id="lbEmoji" style="font-size:6rem;">🏫</div>
+      <p id="lbCaption">Caption</p>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 Hope Foundation | Made with ❤️</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
